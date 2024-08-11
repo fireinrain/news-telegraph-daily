@@ -32,7 +32,7 @@ def send_news(language: str, country: str):
     response = None
     try:
         tg = Telegraph(auth_token)
-        response = tg.create_page('News Telegraph Today', html_content=page_content)
+        response = tg.create_page(f'{country.upper()}-News Telegraph Today', html_content=page_content)
     except Exception as e:
         print(f"Create telegraph post failed: {e}")
         return
@@ -40,7 +40,7 @@ def send_news(language: str, country: str):
     try:
         # send it via telegram
         bot = telebot.TeleBot(api_key)
-        bot.send_message(chat_id, response['url'])
+        bot.send_message(chat_id, response['url'] + f"\n#{country.upper()}")
     except Exception as e:
         print(f"Send poster link to telegram bot failed: {e}")
         return
@@ -51,8 +51,12 @@ def send_news(language: str, country: str):
 
 
 def main():
+    # us news
     send_news('en', 'us')
-    send_news('zh', 'cn')
+    # cn news
+    # send_news(None, 'cn')
+    # tw news
+    # send_news(None, 'tw')
 
 
 if __name__ == '__main__':
