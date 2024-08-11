@@ -1,8 +1,7 @@
 from newsapi import NewsApiClient
 from telegraph import Telegraph
-from datetime import datetime
 import os, telebot
-from datetime import date
+from datetime import datetime
 
 # set-up env variables
 auth_token = os.getenv('TELEGRAPH_TOKEN')
@@ -39,7 +38,8 @@ def send_news(language: str, country: str):
         return
 
     try:
-        current_date = date.today().strftime("%Y%m%d")
+        current_date = datetime.date().today().strftime("%Y%m%d")
+
         # send it via telegram
         bot = telebot.TeleBot(api_key)
         bot.send_message(chat_id, response['url'] + f"\n#{country.upper()} #D{current_date}")
