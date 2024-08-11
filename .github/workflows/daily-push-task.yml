@@ -1,11 +1,12 @@
-name: run main.py
+name: daily-push-task
 
 on:
   push:
     branches:
-      - main
+#      - main
   schedule:
-    - cron: '30 0 * * *'
+    # run every six hours
+    - cron: '0 */6 * * *'
 
 jobs:
   build:
