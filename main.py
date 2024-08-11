@@ -4,10 +4,10 @@ from datetime import datetime
 import os, telebot
 
 # set-up env variables
-auth_token = os.environ['TELEGRAPH_TOKEN']
-chat_id = os.environ['CHAT_ID']
-api_key = os.environ['TELEGRAM_API_KEY']
-news_api_key = os.environ['NEWS_API']
+auth_token = os.getenv('TELEGRAPH_TOKEN')
+chat_id = os.getenv('CHAT_ID')
+api_key = os.getenv('TELEGRAM_API_KEY')
+news_api_key = os.getenv('NEWS_API')
 
 
 def send_news(language: str, country: str):
@@ -29,12 +29,21 @@ def send_news(language: str, country: str):
         page_content += title + date + description + img + content + '<hr></hr>\n'
 
     # create a telegraph page
-    tg = Telegraph(auth_token)
-    response = tg.create_page('News Telegraph Today', html_content=page_content)
+    response = None
+    try:
+        tg = Telegraph(auth_token)
+        response = tg.create_page('News Telegraph Today', html_content=page_content)
+    except Exception as e:
+        print(f"Create telegraph post failed: {e}")
+        return
 
-    # send it via telegram
-    bot = telebot.TeleBot(api_key)
-    bot.send_message(chat_id, response['url'])
+    try:
+        # send it via telegram
+        bot = telebot.TeleBot(api_key)
+        bot.send_message(chat_id, response['url'])
+    except Exception as e:
+        print(f"Send poster link to telegram bot failed: {e}")
+        return
 
     # log the newspapers
     with open('newslogs.txt', 'a') as file:
