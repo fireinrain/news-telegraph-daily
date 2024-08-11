@@ -38,7 +38,7 @@ def send_news(language: str, country: str):
         return
 
     try:
-        current_date = datetime.date().today().strftime("%Y%m%d")
+        current_date = datetime.now().strftime("%Y%m%d")
 
         # send it via telegram
         bot = telebot.TeleBot(api_key)
