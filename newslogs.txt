@@ -728,3 +728,6 @@
 2024-08-17 18:16:52.947781 - https://telegra.ph/US-News-Telegraph-Today-08-17-4
 2024-08-17 18:16:53.958902 - https://telegra.ph/TW-News-Telegraph-Today-08-17-4
 2024-08-17 18:16:54.840685 - https://telegra.ph/CN-News-Telegraph-Today-08-17-4
+2024-08-18 01:05:05.881134 - https://telegra.ph/US-News-Telegraph-Today-08-18
+2024-08-18 01:05:06.734309 - https://telegra.ph/TW-News-Telegraph-Today-08-18
+2024-08-18 01:05:07.510968 - https://telegra.ph/CN-News-Telegraph-Today-08-18
